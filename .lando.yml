@@ -1,0 +1,35 @@
+name: sandbox
+# Le nom de votre projet. Il sera aussi utiliser comme préfix des containers créé par lando
+recipe: symfony
+# Choix de la recipe sur laquelle se baser
+
+config: 
+# Cette section permet de spécifier les paramètres de la recipe
+  via: apache 
+  # Spécifie le type de serveur web apache ou nginx
+  webroot: public
+  # Indique le dossier d'entrée de votre projet. Pour un symfony c'est le dossier public
+  php: '8.3'
+  # la version de php de la 5.3 à la 8.3
+  database: postgres
+  # spécifie le type de base de données entre mariadb, mysql ou postgres. La recette se base sur la version par défaut mais vous pouvez la spécifier via ":16"
+  cache: memcached
+  # permet d'activer un systeme de cache: redis ou memcached
+  xdebug: false
+  # active ou non le xdebug
+  
+services:
+  appserver:
+    build_as_root:
+      - curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' | bash
+      - apt install symfony-cli
+  database:
+    type: postgres
+    version: '16'
+    portforward: 50000
+    creds:
+      database: sandbox
+
+proxy:
+  appserver:
+    - sandbox.local
