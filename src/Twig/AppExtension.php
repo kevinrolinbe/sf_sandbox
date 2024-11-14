@@ -12,6 +12,7 @@ class AppExtension extends AbstractExtension
     {
         return [
             new TwigFunction('helloworld', [AppRuntime::class, 'helloworld']),
+            new TwigFunction('calculateAge', [AppRuntime::class, 'calculateAge']),
         ];
     }
 
@@ -19,6 +20,7 @@ class AppExtension extends AbstractExtension
     {
         return [
             new TwigFilter('helloworld', [AppRuntime::class, 'helloworld']),
+            new TwigFilter('calculateAge', [AppRuntime::class, 'calculateAge']),
         ];
     }
 }

@@ -1,4 +1,6 @@
-<p>With filter</p>
-<h1>{{ 'Kevin'|helloworld }}</h1>
-<p>With function</p>
-<h1>{{ helloworld('kevin') }}</h1>
+<h1>HelloWorld</h1>
+<p><strong>With filter</strong>:{{ 'Kevin'|helloworld }}</p>
+<p><strong>With function:{{ helloworld('kevin') }}</strong></p>
+
+<h1>Calculate Age</h1>
+{{ calculateAge(date('2000-01-25')) }}

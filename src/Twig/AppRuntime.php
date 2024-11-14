@@ -16,4 +16,12 @@ class AppRuntime implements RuntimeExtensionInterface
     {
         return 'Hello '.$name.'!';
     }
+
+    public function calculateAge(\DateTimeInterface $birthDate): int
+    {
+        $today = new \DateTime();
+        $age = $today->diff($birthDate)->y;
+
+        return $age;
+    }
 }
